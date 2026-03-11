@@ -9,9 +9,14 @@
         function todoscallback(data){
             console.log(data);
             var parentelement=document.getElementById("Mainarea");
-            parentelement.innerHTML=JSON.stringify(data)
+            // parentelement.innerHTML=JSON.stringify(data)
+            for (var i=0;i<data.length;i++){
+                childelement=document.createElement("div");
+                childelement.innerHTML=data[i].title;
+                parentelement.appendChild(childelement);
 
-        }
+            }
+}
         
         function callbackfn2(res){
             res.json().then(todoscallback);
@@ -31,8 +36,8 @@
         res.json().then(parsedata);
     }
     function onPress(){
-        // var title=document.getElementById("title").value;
-        // var description=document.getElementById("description").value;
+         var title=document.getElementById("title").value;
+         var description=document.getElementById("description").value;
 
         fetch("http://localhost:3000/todos",{
             method:"POST",
@@ -55,7 +60,7 @@
     <br><br>
     <button onclick="onPress()">Send Todo</button>
     <div id="Mainarea">
-        hii there
+       
     </div>
 </body>
 </html>
